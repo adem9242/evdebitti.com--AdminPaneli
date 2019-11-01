@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Ürünler";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@using MVC_Uygulama.Models;
+@model List<C_URUNLER>
+
+<div class="col-md-12 mb-2">
+    <a href="/Urunler/UrunEkle/" class="btn btn-success">YENİ ÜRÜN</a>
+</div>
+<div class="col-md-12">
+    <table border="1" class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Fiyatı</th>
+                @*<th>Stok</th>*@
+                <th>Ürün Kategori</th>
+                @*<th>Tedarikçi</th>
+                <th>Yeni Satış</th>
+                <th>En Az Yeniden Satış</th>
+                <th>Sonlandı</th>*@
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (C_URUNLER urun in Model)
+            {
+                <tr>
+                    <td>@urun.URUN_AD</td>
+                    <td>@urun.URUN_FIYAT</td>
+                    
+                    @if (urun.C_URUN_KATEGORILER.URUN_KATEGORI_ID == 0)
+                    {
+                        <td>Kategorisi Yok</td>
+                    }
+                    else
+                    {
+                        <td>@urun.C_URUN_KATEGORILER.URUN_KATEGORI_ADI</td>
+                    }
+                    @*@if (urun.Tedarikciler == null)
+                    {
+                        <td>Tedarikçi Yok</td>
+                    }
+                    else
+                    {
+                        <td>@urun.Tedarikciler.SirketAdi</td>
+                    }*@
+
+                    
+                    
+                    @*@if (@urun.Sonlandi == true)
+                    {
+                        <td style="color:green;font-weight:bold;">Stokta Var</td>
+                    }
+                    else
+                    {
+                        <td style="color:red;">Stokta Yok</td>
+                    }*@
+                    <td><a href="/Urunler/UrunSil/@urun.URUNID" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Urunler/UrunGuncelle/@urun.URUNID" class="btn btn-success">Güncelle</a></td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

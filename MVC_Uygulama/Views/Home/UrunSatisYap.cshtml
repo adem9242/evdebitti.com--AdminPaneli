@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "UrunSatisYap";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@using MVC_Uygulama.Models
+@model Satis_Detaylari
+
+<h2>UrunSatisYap Sayfası</h2>
+
+<form action="/Home/UrunGuncelle" method="post">
+    <table class="form-group">
+        <tr>
+            <td>Ürün ID</td>
+            <td><input disabled class="form-control" type="number" name="UrunID" value="@Model.UrunID" /></td>
+        </tr>
+        <tr>
+            <td>Ürün Adı</td>
+            <td><input class="form-control" type="text" name="UrunAdi" value="@Model.Urunler.UrunAdi" /></td>
+        </tr>
+        <tr>
+            <td>Fiyatı</td>
+            <td><input class="form-control" type="text" name="BirimFiyati" value="@Model.BirimFiyati" /></td>
+        </tr>
+        <tr>
+            <td>Adet</td>
+            <td><input class="form-control" type="number" name="HedefStokDuzeyi" value="@Model.Miktar" /></td>
+        </tr>
+       
+        <tr>
+            <td></td>
+            <td><input class="btn btn-success" type="submit" name="name" value="Kaydet" /></td>
+        </tr>
+    </table>
+</form>

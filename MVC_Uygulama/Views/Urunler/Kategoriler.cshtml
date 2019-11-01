@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@using MVC_Uygulama.Models;
+@model List<Kategoriler>
+
+<table border="1" class="table table-striped">
+    <tr class="thead-dark">
+        <th>Kategori Adı</th>
+        <th>Tanımı</th>
+    </tr>
+    @foreach (Kategoriler kat in Model)
+    {
+        <tr>
+            <td>@kat.KategoriAdi</td>
+            <td>@kat.Tanimi</td>
+        </tr>
+    }
+</table>
+
+
+

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@model MembershipUserCollection
+<table class="table table-striped">
+    <thead class="bg-danger">
+    <tr>
+        <th>Üye Adı</th>
+        <th>Email</th>
+        <th>Kayıt Tarihi</th>
+        <th>Son Giriş Tarihi</th>
+    </tr>
+    </thead>
+    @foreach (MembershipUser kul in Model)
+    {
+        <tr>
+            <td>@kul.UserName</td>
+            <td>@kul.Email</td>
+            <td>@kul.CreationDate</td>
+            <td>@kul.LastLoginDate</td>
+        </tr>
+    }
+
+</table>
+
+
+

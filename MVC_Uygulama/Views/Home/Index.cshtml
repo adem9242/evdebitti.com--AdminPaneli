@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@using MVC_Uygulama.Models;
+@model List<Urunler>
+    <div class="col-md-10">
+    <table border="1" class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Fiyatı</th>
+                <th>Stok</th>
+                <th>Kategori</th>
+                <th>Tedarikçi</th>
+                <th>Yeni Satış</th>
+                <th>En Az Yeniden Satış</th>
+                <th>Sonlandı</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Urunler urun in Model)
+            {
+                <tr>
+                    <td>@urun.UrunAdi</td>
+                    <td>@urun.BirimFiyati</td>
+                    <td>@urun.HedefStokDuzeyi</td>
+                    @if (urun.Kategoriler == null)
+                    {
+                        <td>Kategorisi Yok</td>
+                    }
+                    else
+                    {
+                        <td>@urun.Kategoriler.KategoriAdi</td>
+                    }
+                    @if (urun.Tedarikciler == null)
+                {
+                        <td>Tedarikçi Yok</td>
+                    }
+                    else
+                    {
+                        <td>@urun.Tedarikciler.SirketAdi</td>
+                    }
+
+                    <td>@urun.YeniSatis</td>
+                    <td>@urun.EnAzYenidenSatisMikatari</td>
+                    @if (@urun.Sonlandi == true)
+                    {
+                        <td style="color:green;font-weight:bold;">Stokta Var</td>
+                    }
+                    else
+                    {
+                        <td style="color:red;">Stokta Yok</td>
+                    }
+                    <td><a href="/Home/UrunSil/@urun.UrunID" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Home/UrunGuncelle/@urun.UrunID" class="btn btn-success">Güncelle</a></td>
+                    <td><a href="/Home/UrunGuncelle/@urun.UrunID" class="btn btn-success">Satış Yap</a></td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table border="1">
+        <tr>
+            <th>Kategori Adı</th>
+            <th>Tanımı</th>
+        </tr>
+        @foreach (Kategoriler kat in ViewBag.Berra)
+        {
+            <tr>
+                <td>@kat.KategoriAdi</td>
+                <td>@kat.Tanimi</td>
+            </tr>
+        }
+    </table>
+
+</div>

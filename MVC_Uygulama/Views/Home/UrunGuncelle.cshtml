@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "UrunGuncelle";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@using MVC_Uygulama.Models
+@model Urunler
+
+<h2>Urun Guncelleme Sayfası</h2>
+<form action="/Home/UrunGuncelle" method="post">
+    <table class="form-group">
+        <tr>
+            <td>Ürün ID</td>
+            <td><input disabled class="form-control" type="number" name="UrunID" value="@Model.UrunID" /></td>
+        </tr>
+        <tr>
+            <td>Ürün Adı</td>
+            <td><input class="form-control" type="text" name="UrunAdi" value="@Model.UrunAdi"/></td>
+        </tr>
+        <tr>
+            <td>Fiyatı</td>
+            <td><input class="form-control" type="text" name="BirimFiyati" value="@Model.BirimFiyati" /></td>
+        </tr>
+        <tr>
+            <td>Stok</td>
+            <td><input class="form-control" type="number" name="HedefStokDuzeyi" value="@Model.HedefStokDuzeyi" /></td>
+        </tr>
+        <tr>
+            <td>Kategori</td>
+            <td>
+                <select class="form-control" name="KategoriID">
+                    @foreach (Kategoriler kat in ViewBag.Kategoriler)
+                    {
+                        if(kat.KategoriID == Model.KategoriID)
+                        {
+                            <option selected value="@kat.KategoriID">@kat.KategoriAdi</option>
+                        }
+                        else
+                        {
+                            <option value="@kat.KategoriID">@kat.KategoriAdi</option>
+                        }
+
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Tedarikçi</td>
+            <td>
+                <select class="form-control" name="TedarikciID">
+                    @foreach (Tedarikciler ted in ViewBag.Tedarikciler)
+                    {
+                        if (ted.TedarikciID == Model.TedarikciID)
+                        {
+                            <option selected value="@ted.TedarikciID">@ted.SirketAdi</option>
+                        }
+                        else
+                        {
+                            <option value="@ted.TedarikciID">@ted.SirketAdi</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input class="btn btn-success" type="submit" name="name" value="Kaydet" /></td>
+        </tr>
+    </table>
+</form>
+

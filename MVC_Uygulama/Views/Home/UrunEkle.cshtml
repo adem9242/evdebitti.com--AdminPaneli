@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@using MVC_Uygulama.Models;
+
+<h2>Urun Ekleme Sayfası</h2>
+<form action="/Home/UrunEkle" method="post">
+    <table class="form-group">
+        <tr>
+            <td>Ürün Adı</td>
+            <td><input class="form-control" type="text" name="UrunAdi"/></td>
+        </tr>
+        <tr>
+            <td>Fiyatı</td>
+            <td><input  class="form-control" type="number" name="BirimFiyati" /></td>
+        </tr>
+        <tr>
+            <td>Stok</td>
+            <td><input  class="form-control"type="number" name="HedefStokDuzeyi" /></td>
+        </tr>
+        <tr>
+            <td>Kategori</td>
+            <td>
+                <select  class="form-control" name="KategoriID">
+                   @foreach (Kategoriler kat in ViewBag.Kategoriler)
+                   {
+                       <option value="@kat.KategoriID">@kat.KategoriAdi</option>
+                   }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Tedarikçi</td>
+            <td>
+                <select  class="form-control" name="TedarikciID">
+                    @foreach (Tedarikciler ted in ViewBag.Tedarikciler)
+                    {
+                        <option value="@ted.TedarikciID">@ted.SirketAdi</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input class="btn btn-success" type="submit" name="name" value="Kaydet" /></td>
+        </tr>
+    </table>
+</form>
+
